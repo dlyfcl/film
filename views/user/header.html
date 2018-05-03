@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title><%= title %></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="/user/css/style.css">
+<link rel="stylesheet" href="/user/css/colors/green.css" id="colors">
+
+<link href="/public/css/public.css" rel="stylesheet"/>
+<link href="/public/css/sweet-alert.css" rel="stylesheet"/>
+
+<script src="/public/js/sweet-alert.min.js"></script>
+</head>
+
+<body class="boxed">
+<div id="wrapper">
+
+
+<div id="top-bar">
+	<div class="container">
+
+		<div class="ten columns">
+			<ul class="top-bar-menu">
+				<li><i class="fa fa-phone"></i> (564) 123 4567</li>
+				<li><i class="fa fa-envelope"></i> <a href="#">mail@example.com</a></li>
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="clearfix"></div>
+
+
+<!-- Header
+================================================== -->
+<div class="container">
+
+
+	<!-- Logo -->
+	<div class="four columns">
+		<div id="logo">
+			<!-- <h1><a href="/"><img src="/user/images/logo.png" alt="Trizzy" /></a></h1> -->
+		</div>
+	</div>
+
+
+	<!-- Additional Menu -->
+	<div class="twelve columns">
+		<div id="additional-menu">
+			<ul>
+        <% if (name) { %>
+					<li><a href="javascript:;">欢迎您，<%= name %></a></li>
+					<!-- <li><a href="/shopcart">购物车</a></li> -->
+					<li><a href="/mydingdan">我的订单</a></li>
+  				<li><a href="/logout">退出</a></li>
+        <% } else { %>
+  				<li><a href="/reglogin">登录 / 注册</a></li>
+        <% } %>
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- Shopping Cart -->
+	<div class="twelve columns">
+
+		<!-- Search -->
+		<nav class="top-search">
+			<form action="/searchlist" method="post">
+				<button><i class="fa fa-search"></i></button>
+				<input class="search-field" type="text" name="place" placeholder="Search" value="">
+			</form>
+		</nav>
+
+	</div>
+
+</div>
+
+
+<!-- Navigation
+================================================== -->
+<div class="container">
+	<div class="sixteen columns">
+
+		<a href="#menu" class="menu-trigger"><i class="fa fa-bars"></i> Menu</a>
+
+		<nav id="navigation">
+			<ul class="menu" id="responsive">
+
+				<li><a href="/" class="current homepage" id="current">首页</a></li>
+
+				<li class="demo-button">
+				  <a href="/allchanpin">所有电影</a>
+				</li>
+				<% if (name) { %>
+				<li class="demo-button">
+				  <a href="/myshoucang">我的收藏</a>
+				</li>
+				<% } %>
+				
+				<li class="dropdown">
+					<a href="#">分类查看</a>
+					<ul>
+						<% for (var i in fenleiList) { %>
+							<li><a href="/fllist/<%= fenleiList[i].id %>"><%= fenleiList[i].name %></a></li>
+						<% } %>
+					</ul>
+				</li>
+
+			</ul>
+		</nav>
+	</div>
+</div>

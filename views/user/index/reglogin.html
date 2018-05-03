@@ -1,0 +1,105 @@
+<% include ../header.html %>
+
+  <section class="titlebar">
+    <div class="container">
+      <div class="sixteen columns">
+        <h2>登录 / 注册</h2>
+        <nav id="breadcrumbs">
+          <ul>
+            <li><a href="#">首页</a></li>
+            <li>登录 / 注册</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="six columns centered">
+
+      <ul class="tabs-nav my-account">
+        <li class="active"><a href="#tab1">登录</a></li>
+        <li class=""><a href="#tab2">注册</a></li>
+      </ul>
+
+      <div class="tabs-container">
+        <!-- Login -->
+        <div class="tab-content" id="tab1" style="display: block;">
+
+          <h3 class="headline">登录</h3><span class="line" style="margin-bottom:20px;"></span>
+          <div class="clearfix"></div>
+
+          <form method="post" class="login">
+
+
+            <p class="form-row form-row-wide">
+              <label for="account">账号: <span class="required">*</span></label>
+              <input type="text" class="input-text" name="account" id="account" value="">
+            </p>
+
+            <p class="form-row form-row-wide">
+              <label for="password">密码: <span class="required">*</span></label>
+              <input class="input-text" type="password" name="password" id="password">
+            </p>
+
+            <p class="form-row">
+              <input type="button" class="button btn-login" value="登录">
+
+              <label for="rememberme" class="rememberme">
+						<!-- <input name="rememberme" type="checkbox" id="rememberme" value="forever"> Remember Me</label> -->
+            </p>
+
+            <!-- <p class="lost_password">
+              <a href="#">Lost Your Password?</a>
+            </p> -->
+
+
+          </form>
+        </div>
+
+        <!-- Register -->
+        <div class="tab-content" id="tab2" style="display: none;">
+
+          <h3 class="headline">注册</h3><span class="line" style="margin-bottom:20px;"></span>
+          <div class="clearfix"></div>
+
+          <form method="post" class="register">
+
+            <p class="form-row form-row-wide">
+              <label for="reg_email">账号: <span class="required">*</span></label>
+              <input type="text" class="input-text" name="reg-account" id="reg_email" value="" placeholder="请输入手机号码">
+            </p>
+
+
+            <p class="form-row form-row-wide">
+              <label for="reg_password">密码: <span class="required">*</span></label>
+              <input type="password" class="input-text" name="reg-password" id="reg_password">
+            </p>
+
+            <p class="form-row form-row-wide">
+              <label for="reg_password2">重复密码: <span class="required">*</span></label>
+              <input type="password" class="input-text" name="reg-repassword" id="reg_password2">
+            </p>
+
+            <p class="form-row form-row-wide">
+              <label for="reg_name">昵称: <span class="required">*</span></label>
+              <input type="text" class="input-text" name="reg-name" id="reg_name">
+            </p>
+
+            <p class="form-row form-row-wide">
+              <label for="reg_phone">联系电话: <span class="required">*</span></label>
+              <input type="text" class="input-text" name="reg-phone" id="reg_phone">
+            </p>
+
+            <p class="form-row">
+              <input type="button" class="button btn-reg" value="注册">
+            </p>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% include ../footer.html %>

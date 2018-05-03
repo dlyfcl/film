@@ -1,0 +1,84 @@
+<% include ../header.html %>
+
+<section class="parallax-titlebar fullwidth-element"  data-background="#000" data-opacity="0.45" data-height="160">
+
+        <img src="/user/images/titlebar_bg_01.jpg" alt="" />
+        <div class="parallax-overlay"></div>
+    
+    
+        <div class="parallax-content">
+            <h2>电影列表 <span><%= smalltip %></span></h2>
+    
+            <nav id="breadcrumbs">
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><%= smalltip %></li>
+                </ul>
+            </nav>
+        </div>
+    
+    </section>
+    
+    
+    <div class="container" style="margin-bottom: 120px;">
+    
+    <!-- Sidebar
+    ================================================== -->
+        <div class="four columns">
+            <div class="widget margin-top-0">
+                <h3 class="headline">电影类别</h3><span class="line"></span><div class="clearfix"></div>
+                <ul id="categories">
+                    <% for (var i in fenleiList) { %>
+						<li><a href="/fllist/<%= fenleiList[i].id %>"><%= fenleiList[i].name %></a></li>
+					<% } %>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    
+    
+        <!-- Products -->
+        <div class="twelve columns products">
+            <% if (chanpinList.length > 0) { %>
+                <% for (var i in chanpinList) { %>
+                    <div class="four shop columns">
+                        <figure class="product">
+                            <div class="product-discount">
+                                <% for (var j in fenleiList) { %>
+                                    <% if (chanpinList[i].fenlei == fenleiList[j].id) { %>
+                                        <%= fenleiList[j].name %>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                            <div class="mediaholder">
+                                <a href="/detail/<%= chanpinList[i].id %>">
+                                    <img alt="" src="<%= chanpinList[i].url %>">
+                                    <div class="cover">
+                                        <img alt="" src="<%= chanpinList[i].url %>">
+                                    </div>
+                                </a>
+                                <a href="/detail/<%= chanpinList[i].id %>" class="product-button"><i class="fa fa-eye"></i></a>
+                            </div>
+            
+                         
+                                <section>
+                                    <h5><%= chanpinList[i].place %></h5>
+                                    <span class="product-price">￥<%= chanpinList[i].price %></span>
+                                     <h5>取消收藏</h5>
+                                </section>
+                       
+                        </figure>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <div class="panel-body">
+                    <div class="no-datacon">
+                        <div class="no-data"><img src="/public/img/no-data.png"/></div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    
+    </div>
+
+<% include ../footer.html %>

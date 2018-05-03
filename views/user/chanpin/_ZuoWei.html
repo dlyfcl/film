@@ -1,0 +1,21 @@
+<%
+    var zwList = '';
+    for (var i in ydZwList) {
+        zwList += ydZwList[i].zwid + ',';
+    }
+    zwList = zwList.substr(0, zwList.length - 1).split(',');
+%>
+
+<div class="film-all">
+    <% for (var i = 0; i < 11; i++) { %>
+        <% for (var j = 0; j < 20; j++) { %>
+            <% var zwid = (i+1) + '-' + (j+1); %>
+            <% if (zwList.indexOf(zwid) == -1) { %>
+                <div class="film-item canSel" data-zwid="<%= zwid %>"></div>
+            <% } else { %>
+                <div class="film-item notSel"></div>
+            <% } %>
+        <% } %>
+    <% } %>
+    <div class="clear"></div>
+</div>

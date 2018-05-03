@@ -1,0 +1,122 @@
+<% include ../header.html %>
+
+<section class="titlebar">
+<div class="container">
+	<div class="sixteen columns">
+		<h2>购物车</h2>
+
+		<nav id="breadcrumbs">
+			<ul>
+				<li><a href="/">首页</a></li>
+				<li>购物车</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</section>
+<div class="container" style="margin-bottom: 15px;">
+  <div class="sixteen columns">
+    <h2>选择收货地址
+      <div class="pull-right">
+        <a class="button color btn-addDiZhiView">添加收货地址</a>
+      </div>
+    </h2>
+  </div>
+</div>
+<div class="container">
+	<div id="masonry-wrapper">
+    <% if (dizhiList.length > 0) { %>
+      <% for (var i in dizhiList) { %>
+  			<div class="one-third column masonry-item shouhuodizhi" data-dizhiid="<%= dizhiList[i].id %>">
+  				<article class="from-the-blog" style="margin: 0;">
+  					<section class="from-the-blog-content">
+  						<a href="javascript:;"><h5>收货地址<%= parseInt(i)+1 %></h5></a>
+  						<span><%= dizhiList[i].address %></span>
+  					</section>
+  				</article>
+  			</div>
+      <% } %>
+    <% } else { %>
+      <div class="one-third column masonry-item shouhuodizhi">
+        <div class="panel-body">
+          <div class="no-datacon">
+            <div class="no-data"><img src="/public/img/no-data.png"/></div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+	</div>
+</div>
+
+
+<div class="container cart" style="margin-top: 50px;">
+
+	<div class="sixteen columns">
+
+		<!-- Cart -->
+		<table class="cart-table responsive-table">
+
+			<tr>
+				<th>#</th>
+				<th>商品标题</th>
+				<th>属性</th>
+				<th>单价(元)</th>
+				<th>数量</th>
+				<th>总价(元)</th>
+				<th></th>
+			</tr>
+      <% for (var i in cartList) { %>
+  			<tr>
+  				<td>
+            <input type="checkbox" class="cart-check" name="cartcheck" data-chanpinid="<%= cartList[i].chanpinid %>" data-xingchengid="<%= cartList[i].xingchengid %>" data-price='<%= cartList[i].price %>' data-num='<%= cartList[i].num %>'>
+          </td>
+					<td class="cart-title"><a href="/detail/<%= cartList[i].chanpinid %>"><%= cartList[i].place %></td>
+					<td>尺寸：<%= cartList[i].size %>&nbsp;&nbsp;&nbsp;&nbsp;颜色：<%= cartList[i].color %></td>
+  				<td><%= cartList[i].price %></td>
+  				<td>
+  					<form action='#'>
+  						<div class="qtyminus"></div>
+  						<input type='text' name="quantity" value='<%= cartList[i].num %>' class="qty" disabled />
+  						<div class="qtyplus"></div>
+  					</form>
+  				</td>
+  				<td class="cart-total item-allprice"><%= (cartList[i].price * cartList[i].num).toFixed(2) %></td>
+  				<td><a href="#" class="cart-remove" data-cartid="<%= cartList[i].cartid %>"></a></td>
+  			</tr>
+      <% } %>
+			<table class="cart-table bottom">
+
+				<tr>
+				<th>
+
+					<div class="cart-btns">
+						<a href="javascript:;" class="button color cart-btns proceed btn-addDingdan">下单</a>
+					</div>
+				</th>
+				</tr>
+
+			</table>
+	</div>
+
+
+	<!-- Cart Totals -->
+	<div class="eight columns cart-totals">
+		<h3 class="headline">统计</h3><span class="line"></span><div class="clearfix"></div>
+
+		<table class="cart-table margin-top-5">
+
+			<tr>
+				<th>总价：</th>
+				<td><strong class='allprice'>￥0.00</strong></td>
+			</tr>
+
+		</table>
+		<br>
+		<!-- <a href="#" class="calculate-shipping"><i class="fa fa-arrow-circle-down"></i> Calculate Shipping</a> -->
+	</div>
+
+</div>
+
+<div class="margin-top-40"></div>
+
+<% include ../footer.html %>

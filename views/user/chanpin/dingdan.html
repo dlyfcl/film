@@ -1,0 +1,80 @@
+<% include ../header.html %>
+
+    <div class="container">
+
+        <!-- Tabs
+    ================================================= -->
+        <div class="sixteen columns">
+            <h3 class="headline">我的订单</h3>
+            <span class="line margin-bottom-3-"></span>
+            <div class="clearfix"></div>
+
+            <div class="tabs-container">
+                <div class="tab-content" id="tab1">
+                    <div class="container cart">
+
+                        <div class="sixteen columns">
+                            <% if (dingdanList.length > 0) { %>
+                                <table class="cart-table responsive-table">
+
+                                    <tr>
+                                        <th><%= dingdanList.length %>个订单</th>
+                                        <th>电影名称</th>
+                                        <th>电影时间</th>
+                                        <th>订单人数</th>
+                                        <th>订单总价（元）</th>
+                                        <th>下单时间</th>
+                                    </tr>
+                                    <% for (var i in dingdanList) { %>
+                                        <tr>
+                                            <td>
+                                                <% for (var j in dingdanimgList) { %>
+                                                    <% if (dingdanimgList[j].chanpinid = dingdanList[i].chanpinid) { %>
+                                                        <img src="<%= dingdanimgList[j].url %>" alt="" style="height: 90px;">
+                                                    <% } %>
+                                                <% } %>
+                                            </td>
+                                            <td class="cart-title">
+                                                <a href="/detail/<%= dingdanList[i].chanpinid %>">
+                                                    <%= dingdanList[i].place %>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <%= dingdanList[i].filmtime %>
+                                            </td>
+                                            <td>
+                                                <%= dingdanList[i].ddrenshu %>
+                                            </td>
+                                            <td>
+                                                <%= dingdanList[i].allprice %>
+                                            </td>
+                                            <td>
+                                                <%= dingdanList[i].time %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </table>
+                            <% } else { %>
+                                <div class="panel-body">
+                                    <div class="no-datacon">
+                                        <div class="no-data"><img src="/public/img/no-data.png"/></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                            <br>
+                            <div class="clearfix"></div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <br>
+        </div>
+
+        <div class="clearfix"></div>
+        <br>
+    </div>
+
+    <% include ../footer.html %>

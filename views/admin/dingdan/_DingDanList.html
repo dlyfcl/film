@@ -1,0 +1,20 @@
+<% for (var i in dingdanList) { %>
+  <tr>
+    <td><%= dingdanList[i].place %></td>
+    <td><%= dingdanList[i].filmtime %></td>
+    <td><%= dingdanList[i].ddrenshu %></td>
+    <td><%= dingdanList[i].zwid %></td>
+    <td><%= dingdanList[i].allprice %></td>
+    <td><%= dingdanList[i].time %></td>
+    <td>
+      <button data-userid="<%= dingdanList[i].userid %>" class="btn btn-primary btn-xs btn-getThisDingDanUserInfo">
+        <i class="icon-pencil">查看订单用户信息</i>
+      </button>
+      <% if (state == 0) { %>
+        <button data-dingdanid="<%= dingdanList[i].id %>" data-xingchengid="<%= dingdanList[i].xingchengid %>" data-num="<%= dingdanList[i].ddrenshu %>" class="btn btn-success btn-xs btn-clDingDan">
+          <i class="icon-ok">处理订单</i>
+        </button>
+      <% } %>
+    </td>
+  </tr>
+<% } %>

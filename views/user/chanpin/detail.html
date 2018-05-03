@@ -1,0 +1,190 @@
+<% include ../header.html %>
+
+<section class="titlebar">
+<div class="container">
+	<div class="sixteen columns">
+		<h2>电影详情</h2>
+	</div>
+</div>
+</section>
+
+
+<div class="container">
+
+<!-- Slider
+================================================== -->
+	<div class="eight columns" >
+		<div class="slider-padding">
+			<div id="product-slider" class="royalSlider rsDefault">
+        <% for (var i in imgList) { %>
+			    <img class="rsImg" src="<%= imgList[i].url %>" data-rsTmb="<%= imgList[i].url %>" alt="" />
+        <% } %>
+			 </div>
+			 <div class="clearfix"></div>
+		</div>
+	</div>
+
+
+<!-- Content
+================================================== -->
+	<div class="eight columns">
+		<div class="product-page">
+
+			<!-- Headline -->
+			<section class="title">
+				<h2><%= chanpinInfo.place %></h2>
+				<span class="product-price-discount item-price" data-price="<%= chanpinInfo.price %>" data-chanpinid="<%= chanpinInfo.id %>"><i>￥<%= chanpinInfo.price %></i></span>
+			</section>
+
+			<!-- Text Parapgraph -->
+			<section>
+				<p class="margin-reset"><%= chanpinInfo.introduce.substring(0, 140) %>
+          <% if (chanpinInfo.introduce.length > 140) { %>......<% } %>
+        </p>
+
+				<!-- Share Buttons -->
+				<div class="share-buttons">
+					<ul>
+						<li><a href="javascript:;"><%= chanpinInfo.fenleiname %></a></li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+
+			</section>
+
+
+			<!-- Variables -->
+			<section class="variables">
+
+				<div class="four alpha">
+					<label for="size">电影属性选择</label>
+					<select id="size" name="xingchengid">
+						<% if (xingchengList.length > 0) { %>
+              <% for (var i in xingchengList) { %>
+                <option value="<%= xingchengList[i].id %>"><%= xingchengList[i].time %>&nbsp;&nbsp;&nbsp;
+				  库存：<%= xingchengList[i].renshu %>&nbsp;&nbsp;&nbsp;
+				  销量：<%= xingchengList[i].ydrenshu %></option>
+              <% } %>
+            <% } else { %>
+              <option>商家还未添加商品属性</option>
+            <% } %>
+					</select>
+				</div>
+				<div class="clearfix"></div>
+
+			</section>
+
+
+			<section class="linking">
+
+					<!-- <form action='#'>
+					    <div class="qtyminus"></div>
+					    <input type='text' name="num" value='1' class="qty" />
+					    <div class="qtyplus"></div>
+					</form> -->
+
+					<% if (name) { %>
+						<!-- <a href="javascript:;" class="button adc btn-addToShopCart" data-chanpinid="<%= chanpinInfo.id %>">加入购物车</a> -->
+						<a href="javascript:;" class="button adc btn-getZuoWei">选择当前场次座位</a>
+						<a href="javascript:;" class="button adc btn-shoucang" data-id="<%= chanpinInfo.id %>" style='background-color: red'>收藏</a>
+					<% } else { %>
+						<a href="/reglogin" class="button adc">请您先登录</a>
+					<% } %>
+					<div class="clearfix"></div>
+
+			</section>
+
+		</div>
+	</div>
+
+</div>
+
+
+<div class="container">
+	<div class="sixteen columns">
+			<!-- Tabs Navigation -->
+			<ul class="tabs-nav">
+				<li class="active"><a href="#tab1">详细介绍</a></li>
+				<li><a href="#tab2">电影场次（<%= xingchengList.length %>场）</a></li>
+				<li><a href="#tab3">评论 <span class="tab-reviews">(<%= pinglunList.length %>)</span></a></li>
+			</ul>
+
+			<!-- Tabs Content -->
+			<div class="tabs-container">
+
+				<div class="tab-content" id="tab1">
+					<p><%= chanpinInfo.introduce %></p>
+				</div>
+
+				<div class="tab-content" id="tab2">
+
+					<table class="basic-table">
+						<tr>
+							<th>场次</th>
+							<td>
+                <% for (var i in xingchengList) { %>
+                  <%= xingchengList[i].time %>&nbsp;&nbsp;&nbsp;
+                <% } %>
+              </td>
+						</tr>
+					</table>
+
+				</div>
+
+				<div class="tab-content" id="tab3">
+
+					<!-- Reviews -->
+					<section class="comments">
+
+						<ul>
+							<% if (pinglunList.length > 0) { %>
+								<% for (var i in pinglunList) { %>
+									<li>
+										<div class="avatar"><img src="/user/images/ttt.png" alt="" /></div>
+										<div class="comment-content"><div class="arrow-comment"></div>
+											<div class="comment-by"><strong><%= pinglunList[i].name %></strong><span class="date"><%= pinglunList[i].time %></span>
+											</div>
+											<p><%= pinglunList[i].content %></p>
+										</div>
+									</li>
+								<% } %>
+							<% } else { %>
+								<div class="panel-body">
+									<div class="no-datacon">
+										<div class="no-data"><img src="/public/img/no-data.png"/></div>
+									</div>
+								</div>
+							<% } %>
+						 </ul>
+						 <% if (name) { %>
+
+						<a href="#small-dialog" class="popup-with-zoom-anim button color">添加评论</a>
+						<% } %>
+
+						<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+							<h3 class="headline">添加评论</h3><span class="line margin-bottom-25"></span><div class="clearfix"></div>
+
+							<!-- Form -->
+							<form class="add-comment">
+								<fieldset><div>
+										<label>评论内容: <span>*</span></label>
+										<textarea cols="40" rows="3" name="pinglun-content"></textarea>
+									</div>
+
+								</fieldset>
+
+									<a href="javascript:;" class="button color btn-addpinglun" data-chanpinid="<%= chanpinInfo.id %>">添加评论</a>
+								<div class="clearfix"></div>
+
+							</form>
+						</div>
+
+					</section>
+
+				</div>
+
+			</div>
+	</div>
+</div>
+
+<% include ../footer.html %>
